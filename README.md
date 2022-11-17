@@ -192,16 +192,16 @@ In this way, the distance between K centroid values and N points is calculated, 
 [# Terminate the function if the difference between prev_centroids and updated centroids is feasible] is the terminating part of the function. If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
 
 
-### 4. Built-in Functions & External Functions    
-1) Built-in Functions   
+## 4. Built-in Functions & External Functions    
+### 1) Built-in Functions   
 > _X.append(A)_: A function that adds A to the end of the list X.   
 
 > _df.loc[‘A’]_: Value of row 'A' in df 
 
 > _‘{}’.format(Variable)_: Insert variable value into {}    
 
-2) External Functions
-> Import numpy as np     
+### 2) External Functions
+> #### Numpy     
 > Reference: https://numpy.org/doc/stable/index.html 
 >> * _np.sqrt(Array)_: Square value of all values in the Array    
 >> * _np.sum(Array)_: Sum of all values in the Array    
@@ -215,42 +215,32 @@ In this way, the distance between K centroid values and N points is calculated, 
 >> * _X.shape_: A function that tells the shape of an array(X), returns the length of rows and columns.
 
 
-> Import pandas as pd
+### > Pandas   
+> Reference: Reference: https://pandas.pydata.org/docs/index.html    
+>> * _pd.DataFrame(Data, columns=Column_name, index=Index_name)_: The Data is made into a data frame, and the column name is Column_names and the index is Index_name.
+>> * _pd.read_csv(‘File’, sep = ‘,’)_: Read the File with a delimiter of ‘,’.
+>> * _DataFrame.to_numpy()_: Convert a Pandas object to ndarray, a numpy array object.
 
--	pd.DataFrame(Data, columns=Column_name, index=Index_name): 
-The Data is made into a data frame, and the column name is Column_names and the index is Index_name.
--	pd.read_csv(‘File’, sep = ‘,’): Read the File with a delimiter of ‘,’.
--	DataFrame.to_numpy(): Convert a Pandas object to ndarray, a numpy array object.
+### > Matplotlib.pyplot as plt
+> Reference: https://matplotlib.org/stable/tutorials/introductory/pyplot.html 
+>> * _plt.figure(figsize=(A,B))_: Draw a graph with a horizontal length A and a vertical length B.
+>> * _plt.xlable(‘X_lab’)_: Mark the x-axis with ‘X_lab’.
+>> * _plt.ylabel(‘Y_lab’)_: Mark the y-axis as ‘Y_lab’.
+>> * _plt.scatter(X,Y,color=Col)_: Place a Col colored dot on the (X,Y) position.
+>> * _plt.title(‘Plt_title’)_: Show the title ‘Plt_title' on the plot
+>> * _plt.show()_: Showing a drawn picture.
+>> * _plt.annotate(X,Y,size=Size)_: Add an annotation with Size size in (X,Y) position.
 
-Reference: https://pandas.pydata.org/docs/index.html 
+### > Random 
+> Reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html 
+>> * _rd.randint(A,B)_: Returns a random integer value between A and B.
+### > Basemap
+> Reference : https://matplotlib.org/basemap/api/basemap_api.html 
+>> * _map = Basemap()_: Draw a map of the desired shape considering latitude and longitude.
+>> * _map.drawparallels()_: Parallel labelling on the map.
+>> * _map.drawmeridians()_: Meridian labeling on the map.
+>> * _map.drawcoastlines()_: Draw coastlines.
+>> * _map.drawcountries()_: Draw country boundaries.
+>> * _map.drawmapboundary()_: Draw a line around map projection region.
+>> * _map.plot()_: Plotting on the map.
 
-c)	Import matplotlib.pyplot as plt
-
--	plt.figure(figsize=(A,B)): Draw a graph with a horizontal length A and a vertical length B.
--	plt.xlable(‘X_lab’): 
-* Mark the x-axis with ‘X_lab’.
--	plt.ylabel(‘Y_lab’): Mark the y-axis as ‘Y_lab’.
--	plt.scatter(X,Y,color=Col): Place a Col colored dot on the (X,Y) position.
--	plt.title(‘Plt_title’): Show the title ‘Plt_title' on the plot
--	plt.show(): Showing a drawn picture.
--	plt.annotate(X,Y,size=Size): Add an annotation with Size size in (X,Y) position.
-
-Reference: https://matplotlib.org/stable/tutorials/introductory/pyplot.html 
-
-d)	Import random as rd
-
--	rd.randint(A,B): Returns a random integer value between A and B.
-
-Reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html 
-
-e)	from mpl_toolkits.basemap import Basemap
-
--	map = Basemap(): Draw a map of the desired shape considering latitude and longitude.
--	map.drawparallels(): Parallel labelling on the map.
--	map.drawmeridians(): Meridian labeling on the map.
--	map.drawcoastlines(): Draw coastlines.
--	map.drawcountries(): Draw country boundaries.
--	map.drawmapboundary(): Draw a line around map projection region.
--	map.plot(): Plotting on the map.
-
-Reference : https://matplotlib.org/basemap/api/basemap_api.html 
