@@ -103,8 +103,8 @@ def draw_plot(dots,centroids,color_d,color_c):
     return plt
 ```
 
-> _draw_map(territory, candidate, color, vertiports = False):_
-draw_map() is the drawing function of Problem 2.
+> _draw_map(territory, candidate, color, vertiports = False):_   
+* draw_map() is the drawing function of Problem 2.
 Information on the territory of the map(territory), information on the vertiport candidates(candidate), and information on the colors of the candidates(color) are input.
 In addition, an option named vertiports is also entered, which will be explained later.
 When the function is executed, draw an appropriate map in the [# Draw a map] section.
@@ -158,29 +158,99 @@ def draw_map(territory,candidate,color,vertiports=False):
     return plt
 ```
 
+```python
+## Match cluster information with color information
+# Color dictionary range :0~19
+color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen'
+              ,5:'limegreen',6:'olive',7:'lightskyblue',8:'slategray',9:'royalblue'
+              ,10:'grey',11:'mistyrose',12:'darkslateblue',13:'darkorange', 14:'tomato'
+              ,15:'peru',16:'lavender',17:'firebrick',18:'silver',19:'lightcoral'}
+```
 
-순서 없는 목록은 다음과 같이 작성할 수 있습니다.
 
-* 깃 튜토리얼
-  * 깃 Clone
-  * 깃 Pull
-  * 깃 Commit
-    * 깃 Commit 1)
-    * 깃 Commit 2)
+### 3. K-Means Algorithm Function    
+> __kmeans(dots, auto = False, centroids = None):__   
+* kmeans() is a function of finding the centroid value through the K-Means algorithm, which is commonly used in Problems 1 and 2.
+In dots, information about the points to be clustered is entered. In Problem 1, eight points are used as input values, and in Problem 2, vertiport candidate information is used as input value.
+K means the number of clusters to be created. 
+auto and centroids are options added to efficiently implement Problem 1 and 2 using one function, which will be explained later.
 
-인용 구문은 다음과 같이 작성할 수 있습니다.
+max_iter, a variable declared within the function, means the maximum number of iterations to prevent infinite iterations when repeatedly trying to find the centroid value. The variable theta function as a reference point for negligible difference value when selecting the final centroid.
+In the [# Rows and columns of the data] part, the row(N) and column(dim) of dots are extracted.
+In the [# initialize variables] part, the sse and count(cnt) values are initialized. 
 
-> '공부합시다.' - 나동빈 - 
+In the [## Generate K random centroid values] part, the centroid value is randomly generated with the centroids option. Unlike Problem 1, in which clustering begins with an pre-determined centroid values, Problem 2 requires randomly generated centroid values. Therefore, when no value is transferred to the centroids parameter in Problem 2, the default value None is entered into the centroids. Accordingly, K random centroid values having the same data shape as dots are generated.
 
-테이블은 다음과 같이 작성할 수 있습니다.
+[## if ‘auto’ is False, performance only once] is related to the auto option. In Problem 1, the kmeans() function is called several times manually to show the centroid values found in each iteration. On the other hand, in Problem 2, the K-Means algorithm is automatically repeated several times with only one kmeans() function call, showing the final centroid value. The auto makes this possible. In Problem 1, when auto is entered as False, max_iter is designated as 1, and the K-Means algorithm is implemented only once and terminated. On the other hand, when auto is entered as True in Problem 2, the function proceeds with existing max_iter value. The part where the K-Means algorithm is repeated is [## Repeat the k-means algorithm as much as max_iteration].
 
-이름|영어|정보|수학
----|---|---|---|
-나동빈|98점|87점|100점|
-홍길동|97점|78점|93점|
-이순신|89점|93점|97점|
+cluster is a list used to store cluster information of each point. If K is 10, the information of each cluster is stored as number between 0 and 9.
+cnt is a variable for recording how many times the K-Means algorithm has been repeated before finding the final centroid values. Data clustering is performed in [## k-means algorithm].
+dist is a list that stores the distance from one point value to K centroids in order. For one point, the distance to K centroids is repeatedly calculated and accumulated in dist. When the distance values between one point and K centroids are obtained, the index of the smallest value among the distance values is added to the list cluster through the argmin() function.
+In this way, the distance between K centroid values and N points is calculated, and the index of the nearest centroid of each point is all added to the cluster. Thus, the cluster value of each point is specified. 
+[# update centroids] is the part that updates the centroid values to the newly calculated centroid values. The new centroid values are obtained by averaging the points corresponding to each cluster in the [# calculate the average of points belonging to each cluster]. After the existing centroid values are stored in prev_centroids, the newly obtained centroid values are stored in the centroids.
 
-강조는 다음과 같이 할 수 있습니다.
+[# Terminate the function if the difference between prev_centroids and updated centroids is feasible] is the terminating part of the function. If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
 
-**치킨** 먹다가 ~~두드리기~~났어요. ㅠㅠ
- 
+
+### 4. Built-in Functions & External Functions    
+1) Built-in Functions   
+> _X.append(A)_: A function that adds A to the end of the list X.   
+
+> _df.loc[‘A’]_: Value of row 'A' in df 
+
+> _‘{}’.format(Variable)_: Insert variable value into {}    
+
+2) External Functions
+> Import numpy as np     
+> Reference: https://numpy.org/doc/stable/index.html 
+>> * _np.sqrt(Array)_: Square value of all values in the Array    
+>> * _np.sum(Array)_: Sum of all values in the Array    
+>> * _np.sqrt(Array)_: Square value of all values in the Array     
+>> * _np.Inf_: infinite value    
+>> * _np.zeros(X)_: Create X zero-filled arrays   
+>> * _np.argmin(List)_: Returns the index of the lowest value among the values in the List
+>> * _np.array(List)_: Convert List to array type.
+>> * _np.round(X,N_): Round X to N decimal places
+>> * _np.arange(A,B,C)_: Create an array at intervals of C from A to less than B.
+>> * _X.shape_: A function that tells the shape of an array(X), returns the length of rows and columns.
+
+
+> Import pandas as pd
+
+-	pd.DataFrame(Data, columns=Column_name, index=Index_name): 
+The Data is made into a data frame, and the column name is Column_names and the index is Index_name.
+-	pd.read_csv(‘File’, sep = ‘,’): Read the File with a delimiter of ‘,’.
+-	DataFrame.to_numpy(): Convert a Pandas object to ndarray, a numpy array object.
+
+Reference: https://pandas.pydata.org/docs/index.html 
+
+c)	Import matplotlib.pyplot as plt
+
+-	plt.figure(figsize=(A,B)): Draw a graph with a horizontal length A and a vertical length B.
+-	plt.xlable(‘X_lab’): 
+* Mark the x-axis with ‘X_lab’.
+-	plt.ylabel(‘Y_lab’): Mark the y-axis as ‘Y_lab’.
+-	plt.scatter(X,Y,color=Col): Place a Col colored dot on the (X,Y) position.
+-	plt.title(‘Plt_title’): Show the title ‘Plt_title' on the plot
+-	plt.show(): Showing a drawn picture.
+-	plt.annotate(X,Y,size=Size): Add an annotation with Size size in (X,Y) position.
+
+Reference: https://matplotlib.org/stable/tutorials/introductory/pyplot.html 
+
+d)	Import random as rd
+
+-	rd.randint(A,B): Returns a random integer value between A and B.
+
+Reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html 
+
+e)	from mpl_toolkits.basemap import Basemap
+
+-	map = Basemap(): Draw a map of the desired shape considering latitude and longitude.
+-	map.drawparallels(): Parallel labelling on the map.
+-	map.drawmeridians(): Meridian labeling on the map.
+-	map.drawcoastlines(): Draw coastlines.
+-	map.drawcountries(): Draw country boundaries.
+-	map.drawmapboundary(): Draw a line around map projection region.
+-	map.plot(): Plotting on the map.
+
+Reference : https://matplotlib.org/basemap/api/basemap_api.html 
