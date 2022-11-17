@@ -15,7 +15,7 @@ The libraries and functions used are as follows.
 > __pandas__ : Library used to read data and generate dataframes  
 > https://pandas.pydata.org/about/   
 
-> __matplotlib__: A library that plots various data in many ways   
+> __matplotlib__: Library used to plots various data in many ways   
 > https://doorbw.tistory.com/173   
 
 > __numpy__: Library used to change the data type   
@@ -105,13 +105,13 @@ def draw_plot(dots,centroids,color_d,color_c):
 
 > _draw_map(territory, candidate, color, vertiports = False):_   
 * draw_map() is the drawing function of Problem 2.
-Information on the territory of the map(territory), information on the vertiport candidates(candidate), and information on the colors of the candidates(color) are input.
-In addition, an option named vertiports is also entered, which will be explained later.
-When the function is executed, draw an appropriate map in the [# Draw a map] section.
-In the section [#Mark 'territory' as a blue dot on the map], the territory data entered is displayed as a blue dot on the map. Also, in the section [# Mark 'candidate' as a dot of the color specified on the map], the candidate information is displayed on the map. 
-One option was added to draw Problem 2.2 and 2.3 graphs with a single function. Candidate points in 2.2 are drawn with different colors for each cluster, while in 2.1 are drown with one designated color. If the parameter color is given as a single color in string, the candidate points are displayed on the map in the same color specified. However, if the color is given as cluster information in the form of a list, each point is displayed on the map in different colors for each cluster. 
-In this part, the color dictionary(color_dict) is used to change the index of each cluster to each color. color_dict is dictionary that replaces int-type cluster data with color information, and it can specify colors up to 20 clusters.
-vertiports is an option to represent the finally selected vertiports in star-shaped dots, and has been added to visualize Problem2 plots as a single function. If the vertiports value is not entered or set to False, the basic type of dots are drown. On the other hand, if vertiport is set to True, the indexed star-shaped dots are drawn.
+* Information on the territory of the map(territory), information on the vertiport candidates(candidate), and information on the colors of the candidates(color) are input.
+* In addition, an option named vertiports is also entered, which will be explained later.
+* When the function is executed, draw an appropriate map in the [# Draw a map] section.
+* In the section [#Mark 'territory' as a blue dot on the map], the territory data entered is displayed as a blue dot on the map. Also, in the section [# Mark 'candidate' as a dot of the color specified on the map], the candidate information is displayed on the map. 
+* One option was added to draw Problem 2.2 and 2.3 graphs with a single function. Candidate points in 2.2 are drawn with different colors for each cluster, while in 2.1 are drown with one designated color. If the parameter color is given as a single color in string, the candidate points are displayed on the map in the same color specified. However, if the color is given as cluster information in the form of a list, each point is displayed on the map in different colors for each cluster. 
+* In this part, the color dictionary(color_dict) is used to change the index of each cluster to each color. color_dict is dictionary that replaces int-type cluster data with color information, and it can specify colors up to 20 clusters.
+* Vertiports is an option to represent the finally selected vertiports in star-shaped dots, and has been added to visualize Problem2 plots as a single function. If the vertiports value is not entered or set to False, the basic type of dots are drown. On the other hand, if vertiport is set to True, the indexed star-shaped dots are drawn.
 
 ```python
 def draw_map(territory,candidate,color,vertiports=False):
@@ -171,25 +171,25 @@ color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen
 ### 3. K-Means Algorithm Function    
 > __kmeans(dots, auto = False, centroids = None):__   
 * kmeans() is a function of finding the centroid value through the K-Means algorithm, which is commonly used in Problems 1 and 2.
-In dots, information about the points to be clustered is entered. In Problem 1, eight points are used as input values, and in Problem 2, vertiport candidate information is used as input value.
-K means the number of clusters to be created. 
-auto and centroids are options added to efficiently implement Problem 1 and 2 using one function, which will be explained later.
+* In dots, information about the points to be clustered is entered. In Problem 1, eight points are used as input values, and in Problem 2, vertiport candidate information is used as input value.
+* K means the number of clusters to be created. 
+* _auto_ and _centroids_ are options added to efficiently implement Problem 1 and 2 using one function, which will be explained later.
 
-max_iter, a variable declared within the function, means the maximum number of iterations to prevent infinite iterations when repeatedly trying to find the centroid value. The variable theta function as a reference point for negligible difference value when selecting the final centroid.
-In the [# Rows and columns of the data] part, the row(N) and column(dim) of dots are extracted.
-In the [# initialize variables] part, the sse and count(cnt) values are initialized. 
+* _max_iter_, a variable declared within the function, means the maximum number of iterations to prevent infinite iterations when repeatedly trying to find the centroid value. The variable theta function as a reference point for negligible difference value when selecting the final centroid.
+* In the [# Rows and columns of the data] part, the row(N) and column(dim) of dots are extracted.
+* In the [# initialize variables] part, the sse and count(cnt) values are initialized. 
 
-In the [## Generate K random centroid values] part, the centroid value is randomly generated with the centroids option. Unlike Problem 1, in which clustering begins with an pre-determined centroid values, Problem 2 requires randomly generated centroid values. Therefore, when no value is transferred to the centroids parameter in Problem 2, the default value None is entered into the centroids. Accordingly, K random centroid values having the same data shape as dots are generated.
+* In the [## Generate K random centroid values] part, the centroid value is randomly generated with the centroids option. Unlike Problem 1, in which clustering begins with an pre-determined centroid values, Problem 2 requires randomly generated centroid values. Therefore, when no value is transferred to the centroids parameter in Problem 2, the default value None is entered into the centroids. Accordingly, K random centroid values having the same data shape as dots are generated.
 
-[## if ‘auto’ is False, performance only once] is related to the auto option. In Problem 1, the kmeans() function is called several times manually to show the centroid values found in each iteration. On the other hand, in Problem 2, the K-Means algorithm is automatically repeated several times with only one kmeans() function call, showing the final centroid value. The auto makes this possible. In Problem 1, when auto is entered as False, max_iter is designated as 1, and the K-Means algorithm is implemented only once and terminated. On the other hand, when auto is entered as True in Problem 2, the function proceeds with existing max_iter value. The part where the K-Means algorithm is repeated is [## Repeat the k-means algorithm as much as max_iteration].
+* [## if ‘auto’ is False, performance only once] is related to the auto option. In Problem 1, the kmeans() function is called several times manually to show the centroid values found in each iteration. On the other hand, in Problem 2, the K-Means algorithm is automatically repeated several times with only one kmeans() function call, showing the final centroid value. The auto makes this possible. In Problem 1, when auto is entered as False, max_iter is designated as 1, and the K-Means algorithm is implemented only once and terminated. On the other hand, when auto is entered as True in Problem 2, the function proceeds with existing max_iter value. The part where the K-Means algorithm is repeated is [## Repeat the k-means algorithm as much as max_iteration].
 
-cluster is a list used to store cluster information of each point. If K is 10, the information of each cluster is stored as number between 0 and 9.
+* _cluster_ is a list used to store cluster information of each point. If K is 10, the information of each cluster is stored as number between 0 and 9.
 cnt is a variable for recording how many times the K-Means algorithm has been repeated before finding the final centroid values. Data clustering is performed in [## k-means algorithm].
-dist is a list that stores the distance from one point value to K centroids in order. For one point, the distance to K centroids is repeatedly calculated and accumulated in dist. When the distance values between one point and K centroids are obtained, the index of the smallest value among the distance values is added to the list cluster through the argmin() function.
-In this way, the distance between K centroid values and N points is calculated, and the index of the nearest centroid of each point is all added to the cluster. Thus, the cluster value of each point is specified. 
-[# update centroids] is the part that updates the centroid values to the newly calculated centroid values. The new centroid values are obtained by averaging the points corresponding to each cluster in the [# calculate the average of points belonging to each cluster]. After the existing centroid values are stored in prev_centroids, the newly obtained centroid values are stored in the centroids.
+* _dist_ is a list that stores the distance from one point value to K centroids in order. For one point, the distance to K centroids is repeatedly calculated and accumulated in dist. When the distance values between one point and K centroids are obtained, the index of the smallest value among the distance values is added to the list cluster through the argmin() function.
+* In this way, the distance between K centroid values and N points is calculated, and the index of the nearest centroid of each point is all added to the cluster. Thus, the cluster value of each point is specified. 
+* [# update centroids] is the part that updates the centroid values to the newly calculated centroid values. The new centroid values are obtained by averaging the points corresponding to each cluster in the [# calculate the average of points belonging to each cluster]. After the existing centroid values are stored in prev_centroids, the newly obtained centroid values are stored in the centroids.
 
-[# Terminate the function if the difference between prev_centroids and updated centroids is feasible] is the terminating part of the function. If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
+* [# Terminate the function if the difference between prev_centroids and updated centroids is feasible] is the terminating part of the function. If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
 
 -----------------------------------------------------------
 ## 4. Built-in Functions & External Functions    
