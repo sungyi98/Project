@@ -215,13 +215,13 @@ In this way, the distance between K centroid values and N points is calculated, 
 >> * _X.shape_: A function that tells the shape of an array(X), returns the length of rows and columns.
 
 
-### > Pandas   
+> ### Pandas   
 > Reference: Reference: https://pandas.pydata.org/docs/index.html    
 >> * _pd.DataFrame(Data, columns=Column_name, index=Index_name)_: The Data is made into a data frame, and the column name is Column_names and the index is Index_name.
 >> * _pd.read_csv(‘File’, sep = ‘,’)_: Read the File with a delimiter of ‘,’.
 >> * _DataFrame.to_numpy()_: Convert a Pandas object to ndarray, a numpy array object.
 
-### > Matplotlib.pyplot as plt
+> ### Matplotlib.pyplot as plt
 > Reference: https://matplotlib.org/stable/tutorials/introductory/pyplot.html 
 >> * _plt.figure(figsize=(A,B))_: Draw a graph with a horizontal length A and a vertical length B.
 >> * _plt.xlable(‘X_lab’)_: Mark the x-axis with ‘X_lab’.
@@ -231,7 +231,7 @@ In this way, the distance between K centroid values and N points is calculated, 
 >> * _plt.show()_: Showing a drawn picture.
 >> * _plt.annotate(X,Y,size=Size)_: Add an annotation with Size size in (X,Y) position.
 
-### > Random 
+> ### Random 
 > Reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html 
 >> * _rd.randint(A,B)_: Returns a random integer value between A and B.
 ### > Basemap
