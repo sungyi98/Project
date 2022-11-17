@@ -167,7 +167,7 @@ color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen
               ,15:'peru',16:'lavender',17:'firebrick',18:'silver',19:'lightcoral'}
 ```
 
-
+------------------------------------------
 ### 3. K-Means Algorithm Function    
 > __kmeans(dots, auto = False, centroids = None):__   
 * kmeans() is a function of finding the centroid value through the K-Means algorithm, which is commonly used in Problems 1 and 2.
@@ -191,7 +191,7 @@ In this way, the distance between K centroid values and N points is calculated, 
 
 [# Terminate the function if the difference between prev_centroids and updated centroids is feasible] is the terminating part of the function. If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
 
-
+-----------------------------------------------------------
 ## 4. Built-in Functions & External Functions    
 ### 1) Built-in Functions   
 > _X.append(A)_: A function that adds A to the end of the list X.   
