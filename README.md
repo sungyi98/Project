@@ -36,16 +36,44 @@ import random as rd
 from mpl_toolkits.basemap import Basemap
 ```
 
-Additionally, it was difficult to install the 'Basemap' library. This problem was solved by installing a library as follows as a Conda virtual environment. After installing conda, we created a virtual environment named project and activated it. Then, ‘basemap-data-hires’ and ‘basemap’ were installed in order. 
+Additionally, it was difficult to install the 'Basemap' library. This problem was 
+solved by installing a library as follows as a Conda virtual environment. After 
+installing conda, we created a virtual environment named project and activated it. 
+Then, ‘basemap-data-hires’ and ‘basemap’ were installed in order. 
 ```
 conda create -n project   
 conda activate project   
 conda install -c conda-forge basemap-data-hires   
 conda install -c conda-forge basemap   
 ```
-링크는 다음과 같이 작성할 수 있습니다.
+-------------------
+## Used Datasets
+In Problem 1, eight points and pre-determined centroid points information were used as data.
 
-[블로그 주소](https://blog.naver.com/ndb796)
+```python
+# eight points information
+dots = np.array([[2,10],[2,5],[8,4],[5,8],[7,5],[6,4],[1,2],[4,9]])
+
+# centroids information
+centroids = np.array([[2,10],[5,8],[1,2]])
+```
+
+In Problem 2, information on the territory points and information on the vertiport candidates were used as data.
+```python
+territory = pd.read_csv('/Users/sungie/Desktop/jupyter/South_Korea_territory.csv', sep = ',').to_numpy()
+candidate = pd.read_csv('/Users/sungie/Desktop/jupyter/Vertiport_candidates.csv', sep = ',').to_numpy()
+```
+
+------------------
+## User-Defined Functions
+Prior to the explanation, several rules were established for clear understanding. 
+Thick words in Italics refer to functions or variables. Adding () to the end is a 
+function, and the other is a parameter of an internal variable. [] is direct reference 
+to the annotation within the code shown in the figure
+
+1. Calculate Distance Functions
+> __cal_dist(P1,P2):__
+
 
 순서 없는 목록은 다음과 같이 작성할 수 있습니다.
 
