@@ -1,22 +1,48 @@
-# Project
+# Machine Learning Team Project
 
-# StackEdit에 오신 것을 환영합니다!
+### Group 2
 
-안녕! 저는 ** StackEdit ** 의 첫 번째 Markdown 파일입니다 . StackEdit에 대해 알고 싶다면 저를 읽어보세요. Markdown을 가지고 놀고 싶다면 나를 편집할 수 있습니다. 작업이 끝나면 탐색 모음 왼쪽 모서리에 있는 ** 파일 탐색기 ** 를 열어 새 파일을 만들 수 있습니다 .
+21600313 Park Chungho   
+21700480 Yoon Sungie    
+21700365 Son Juchan   
+22000625 Jang Yeri
 
-## 깃 튜토리얼
+---------------------------
 
-소스코드 블록은 다음과 같이 작성할 수 있습니다.
+## libraries
+Figure 1 is the libraries used in this project. The libraries and functions used are as follows.  
 
-```c
-#include <stdio.h>
+> __pandas__ : Library used to read data and generate dataframes  
+> https://pandas.pydata.org/about/   
 
-int main(void) {
-  printf("Hello World!");
-  return 0;
-}
+> __matplotlib__: A library that plots various data in many ways   
+> https://doorbw.tistory.com/173   
+
+> __numpy__: Library used to change the data type   
+> https://rfriend.tistory.com/285    
+
+> __random__: Library used to generate random numbers   
+> https://wikidocs.net/79    
+
+> __Basemap__: Library used to visualize maps   
+> https://pinkwink.kr/1199    
+
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import random as rd
+from mpl_toolkits.basemap import Basemap
 ```
 
+Additionally, it was difficult to install the 'Basemap' library. This problem was solved by installing a library as follows as a Conda virtual environment. After installing conda, we created a virtual environment named project and activated it. Then, ‘basemap-data-hires’ and ‘basemap’ were installed in order. 
+```
+conda create -n project   
+conda activate project   
+conda install -c conda-forge basemap-data-hires   
+conda install -c conda-forge basemap   
+```
 링크는 다음과 같이 작성할 수 있습니다.
 
 [블로그 주소](https://blog.naver.com/ndb796)
