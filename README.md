@@ -1,4 +1,11 @@
-# Machine Learning Team Project
+# Vertiport Placement    
+---------------------------  
+
+__Vertiport Placement__ is a Python program that uses the K-Means algorithm to clustering vertiports candidate data.    
+Problem 1 is a toy example, clustering the given 8 points.     
+Problem 2 clusters the vertiport candidates and visualizes them on the map.   
+
+---------------------------    
 
 ### Group 2
 
@@ -7,7 +14,7 @@
 21700365 Son Juchan   
 22000625 Jang Yeri
 
----------------------------
+
 
 ## libraries
 The libraries and functions used are as follows.  
@@ -85,7 +92,7 @@ def cal_dist(P1,P2):
 ### 2. Drawing Functions   
 > _draw_plot(dots, centroids, color_d, color_c):_
 * _draw_plot()_ is the drawing function of Problem 1.
-* Information on eight points(_dots_), central points(_centroids_), information on the color of dots (_color_d_), and information on the color of centroids(_color_c_) are included as input values.
+* Information on eight points(_dots_), centroid points(_centroids_), information on the color of dots (_color_d_), and information on the color of centroids(_color_c_) are included as input values.
 * A point of a designated color is displayed on the graph according to the input information.
 
 ```python
@@ -173,7 +180,7 @@ color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen
 > __kmeans(dots, K, auto = False, centroids = None):__   
 * _kmeans()_ is a function of finding the centroid value through the K-Means algorithm, which is commonly used in Problems 1 and 2.
 * _dots_ is information about the point of clustering, and _K_ is the number of clusters.   
-* _auto_ is option to decide whether to implement the K-Means algorithm only once or until the final centroid point is found. When _auto_ is False, max_iter is designated as 1, and the K-Means algorithm is implemented only once and terminated. On the other hand, when _auto_ is true, the function repeats until it finds a central point that meets the criteria.  
+* _auto_ is option to decide whether to implement the K-Means algorithm only once or until the final centroid point is found. When _auto_ is False, max_iter is designated as 1, and the K-Means algorithm is implemented only once and terminated. On the other hand, when _auto_ is true, the function repeats until it finds a centroid point that meets the criteria.  
 * _centroids_ is an option for using pre-determined centroid values or randomly generated ones.
 * If no value is passed to the _centroids_ parameter, the default value None is entered in _centroids_. Accordingly, K random centroid values are generated.
 * _max_iter_, a variable declared within the function, means the maximum number of iterations to prevent infinite iterations when repeatedly trying to find the centroid value. 
@@ -218,10 +225,10 @@ def kmeans(dots, K, auto=False, centroids=None):
         # k-means algorithm
         for n in range(N):
             
-            # Stores the distance between each point and K central points
+            # Stores the distance between each point and K centroid points
             dist = []
             
-            # Calculate the distance between one point and K central points
+            # Calculate the distance between one point and K centroid points
             for k in range(K):
                 dist.append(cal_dist(dots[n], centroids[k]))
             cluster.append(np.argmin(dist))
