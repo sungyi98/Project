@@ -10,7 +10,7 @@
 ---------------------------
 
 ## libraries
-Figure 1 is the libraries used in this project. The libraries and functions used are as follows.  
+The libraries and functions used are as follows.  
 
 > __pandas__ : Library used to read data and generate dataframes  
 > https://pandas.pydata.org/about/   
@@ -70,7 +70,7 @@ candidate = pd.read_csv('/Users/sungie/Desktop/jupyter/Vertiport_candidates.csv'
 Prior to the explanation, several rules were established for clear understanding. 
 Thick words in Italics refer to functions or variables. Adding () to the end is a 
 function, and the other is a parameter of an internal variable. [] is direct reference 
-to the annotation within the code shown in the figure
+to the annotation within the code
 
 ### 1. Calculate Distance Functions
 > _cal_dist(P1,P2):_    
@@ -109,9 +109,9 @@ Information on the territory of the map(territory), information on the vertiport
 In addition, an option named vertiports is also entered, which will be explained later.
 When the function is executed, draw an appropriate map in the [# Draw a map] section.
 In the section [#Mark 'territory' as a blue dot on the map], the territory data entered is displayed as a blue dot on the map. Also, in the section [# Mark 'candidate' as a dot of the color specified on the map], the candidate information is displayed on the map. 
-As shown in Figure 8, one option was added to draw Problem 2.2 and 2.3 graphs with a single function. Candidate points in 2.2 are drawn with different colors for each cluster, while in 2.1 are drown with one designated color. If the parameter color is given as a single color in string, the candidate points are displayed on the map in the same color specified. However, if the color is given as cluster information in the form of a list, each point is displayed on the map in different colors for each cluster. 
-In this part, the color dictionary(color_dict) shown in Figure 7 is used to change the index of each cluster to each color. color_dict is dictionary that replaces int-type cluster data with color information, and it can specify colors up to 20 clusters.
-vertiports is an option to represent the finally selected vertiports in star-shaped dots as shown in Figure 10, and has been added to visualize Problem2 plots as a single function. If the vertiports value is not entered or set to False, the basic type of dots are drown. On the other hand, if vertiport is set to True, the indexed star-shaped dots are drawn.
+One option was added to draw Problem 2.2 and 2.3 graphs with a single function. Candidate points in 2.2 are drawn with different colors for each cluster, while in 2.1 are drown with one designated color. If the parameter color is given as a single color in string, the candidate points are displayed on the map in the same color specified. However, if the color is given as cluster information in the form of a list, each point is displayed on the map in different colors for each cluster. 
+In this part, the color dictionary(color_dict) is used to change the index of each cluster to each color. color_dict is dictionary that replaces int-type cluster data with color information, and it can specify colors up to 20 clusters.
+vertiports is an option to represent the finally selected vertiports in star-shaped dots, and has been added to visualize Problem2 plots as a single function. If the vertiports value is not entered or set to False, the basic type of dots are drown. On the other hand, if vertiport is set to True, the indexed star-shaped dots are drawn.
 
 ```python
 def draw_map(territory,candidate,color,vertiports=False):
