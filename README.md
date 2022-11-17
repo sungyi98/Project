@@ -107,16 +107,16 @@ def draw_plot(dots,centroids,color_d,color_c):
 > _draw_map(territory, candidate, color, vertiports = False):_   
 * _draw_map()_ is the drawing function of Problem 2.
 * Information on the territory of the map(_territory_), information on the vertiport candidates(_candidate_), and information on the colors of the candidates(_color_) are input.
-* When the function is executed, draw an appropriate map in the [# Draw a map] section.
-* In [# Mark 'territory' as a blue dot on the map], the territory data entered is displayed as a blue dot on the map.   
-* In [# Mark 'candidate' as a dot of the color specified on the map], the candidate information is displayed on the map. 
+* In [# Draw a map], An appropriate map is drawn.
+* In [# Mark 'territory' as a blue dot], the territory data entered is displayed as a blue dot on the map.   
+* In [# Mark 'candidate' as a dot of the color specified], the candidate information is displayed on the map. 
 * _color_ is an option to draw Problem 2.1 and 2.2 graphs with a single drawing function. Candidate points in 2.2 are drawn with different colors for each cluster, while in 2.1 are drown with one designated color. If the parameter color is given as a single color in string, the candidate points are displayed on the map in the same color specified. However, if the color is given as cluster information in the form of a list, each point is displayed in different colors for each cluster.   
 * _Vertiports_ is an option to represent the finally selected vertiports in star-shaped dots. If the vertiports value is not entered or set to False, the basic type of dots are drown. On the other hand, if vertiport is set to True, the indexed star-shaped dots are drawn.
 
 ```python
 def draw_map(territory,candidate,color,vertiports=False):
     
-    # Draw a map
+    # Draw a map   
     map = Basemap(projection='merc', lat_0=37.35, lon_0=126.58, resolution = 'h', 
                   urcrnrlat=41, llcrnrlat=33, llcrnrlon=123.5, urcrnrlon=130.5)
     
@@ -129,16 +129,16 @@ def draw_map(territory,candidate,color,vertiports=False):
     map.drawcountries()
     map.drawmapboundary()
     
-    # Mark 'territory' as a blue dot on the map
+    # Mark 'territory' as a blue dot   
     for i in range(territory.shape[0]):
         x,y = map(territory[i][0],territory[i][1])
         map.plot(x, y, 'o', markersize=1, color='blue')
     
-    # Mark 'candidate' as a dot of the color specified on the map
+    # Mark 'candidate' as a dot of the color specified    
     for j in range(candidate.shape[0]):
         a,b = map(candidate[j][0],candidate[j][1])
         
-        ## Specify the color of the point
+        # Specify the color of the point
         # If the color is entered in string type
         if type(color) is str:
             col = color
@@ -146,7 +146,7 @@ def draw_map(territory,candidate,color,vertiports=False):
         else:
             col = color_dict[color[j]]
         
-        ## If the "Vertiport" option is True, indexed star-shaped dots are drawn
+        # If the "Vertiport" option is True, indexed star-shaped dots are drawn
         if vertiports:
             map.plot(a, b, markersize=6, color=col, marker='*')
             plt.annotate(j+1, (a, 1.05*b), size=8)
@@ -160,7 +160,7 @@ def draw_map(territory,candidate,color,vertiports=False):
 * The color dictionary(_color_dict_) is used to change the index of each cluster to each color. _color_dict_ is dictionary that replaces int-type cluster data with color information, and it can specify colors up to 20 clusters.  
 
 ```python
-## Match cluster information with color information
+# Match cluster information with color information
 # Color dictionary range :0~19
 color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen'
               ,5:'limegreen',6:'olive',7:'lightskyblue',8:'slategray',9:'royalblue'
@@ -183,6 +183,7 @@ color_dict = {0:'gold', 1:'lightpink', 2:'powderblue' ,3:'orchid',4:'yellowgreen
 * _dist_ is a list that stores the distance from one point value to K centroids in order. For one point, the distance to K centroids is repeatedly calculated and accumulated in _dist_. When the distance values between one point and K centroids are obtained, the index of the smallest value among the distance values is added to the _cluster_ through the _argmin()_ function. In this way, the distance between K centroid values and N points is calculated, and the index of the nearest centroid of each point is all added to the _cluster_. Thus, the cluster value of each point is specified. 
 * In [# == update centroids ==], the newly calculated centroid values are updated. The new centroid values are obtained by averaging the points corresponding to each cluster.
 * In [# == Termination ==], If the distance difference between the previous centroid values and the newly updated centroid values is smaller than the reference value, it is judged as the final centroid and the function is terminated. The sse variable, the sum of the squares of the difference between the K previous centroid values and the updated K centroid values, is used. If this sse value is less than theta value specified earlier, it is considered a negligible difference and the function is terminated. And at the end of kmeans() function, the final centroid values, the iteration number of the K-Means algorithm, and the final cluster information of N points are returned.
+* In [# == Termination == ], the sse value is the sum of squares of the differences between the previous K centroid values and the updated K centroid values. If the distance difference between the previous centroids and the newly updated centroids is smaller than the _theta_, it is considered that there is no in the centroid values and the function is terminated. And the final centrid values, the number of iterations of the K-Means algorithm, and the final cluster information of N points are returned.
 
 ```python
 def kmeans(dots, K, auto=False, centroids=None):
@@ -197,24 +198,24 @@ def kmeans(dots, K, auto=False, centroids=None):
     sse = np.Inf 
     cnt = 0
     
-    ## Generate K random centroid values
+    # Generate K random centroid values
     if centroids is None:
         centroids = np.zeros((K, dim))
         for k in range(K):
             rand_index = rd.randint(0, N-1)
             centroids[k] = dots[rand_index]
     
-    ## If 'auto' is False, perform iteration only once
+    # If 'auto' is False, perform iteration only once
     if not auto:
         max_iter = 1
     
-    ## Repeat the k-means algorithm as much as max_iteration
+    # Repeat the k-means algorithm as much as max_iteration
     for i in range(max_iter):
         
         cluster =[] # Storing cluster information for each point
         cnt = cnt+1 # Update iteration count
         
-        ## k-means algorithm
+        # k-means algorithm
         for n in range(N):
             
             # Stores the distance between each point and K central points
@@ -246,7 +247,7 @@ def kmeans(dots, K, auto=False, centroids=None):
         
         
         # == Termination ==
-        ## Terminate the function if the difference between the prev_centroids and updated centroids is negligible
+        # Terminate the function if the difference between the prev_centroids and updated centroids is negligible
         
         prev_sse = sse
         sse = 0
