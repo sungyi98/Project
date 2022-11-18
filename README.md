@@ -322,3 +322,13 @@ def kmeans(dots, K, auto=False, centroids=None):
 >> * _map.drawmapboundary()_: Draw a line around map projection region.
 >> * _map.plot()_: Plotting on the map.
 
+> #### sklearn.cluster
+> Reference: 
+>> * _Kmeans(n_cluster, init, n_init, max_iter, random_state)_: number of cluster(_n_cluster_), initialization method (_init_), initial centroid points attempts (_n_init_), and maximum number of iterations (_param_max_iter_) are entered, and the model is returned.
+>> * _model.fit(data)_: The inertial value for the data(_candidate_) is Returned via inertia_.
+
+from sklearn.cluster import KMeans
+	km.fit(data) : Compute the k-means clustering by give data
+	km.inertia_float : Sum of squared distances of samples to their closest cluster center, weighted by the sample weights if provided.
+![image](https://user-images.githubusercontent.com/70621926/202629982-2fd225fe-251f-4dc6-adea-5668f84f8487.png)
+
