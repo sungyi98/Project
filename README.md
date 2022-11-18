@@ -34,6 +34,12 @@ The libraries and functions used are as follows.
 > __Basemap__: Library used to visualize maps   
 > https://pinkwink.kr/1199    
 
+> __sklearn__: Library used to find optimal K value    
+> https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html       
+> https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html       
+
+> __seaborn__ : Library used to draw heatmap     
+> https://dsbook.tistory.com/51
 
 ```python
 import pandas as pd
@@ -41,6 +47,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random as rd
 from mpl_toolkits.basemap import Basemap
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_samples, silhouette_score
+import seaborn as sns
 ```
 ## Installation   
 -------------------------------
@@ -295,9 +304,10 @@ def kmeans(dots, K, auto=False, centroids=None):
 
 > #### Pandas   
 > Reference: https://pandas.pydata.org/docs/index.html    
->> * _pd.DataFrame(Data, columns=Column_name, index=Index_name)_: The Data is made into a data frame, and the column name is Column_names and the index is Index_name.
->> * _pd.read_csv(‘File’, sep = ‘,’)_: Read the File with a delimiter of ‘,’.
->> * _DataFrame.to_numpy()_: Convert a Pandas object to ndarray, a numpy array object.
+>> * _pd.DataFrame(Data, columns=Column_name, index=Index_name)_: The Data is made into a data frame, and the column name is Column_names and the index is Index_name.         
+>> * _pd.read_csv(‘File’, sep = ‘,’)_: Read the File with a delimiter of ‘,’.        
+>> * _DataFrame.to_numpy()_: Convert a Pandas object to ndarray, a numpy array object.       
+>> * _pd.pivot_table(data, index, values)_: _index_ is the column to enter the row position, and _values_ is the column to use as data.         
 
 > #### Matplotlib
 > Reference: https://matplotlib.org/stable/tutorials/introductory/pyplot.html 
@@ -312,6 +322,7 @@ def kmeans(dots, K, auto=False, centroids=None):
 > #### Random 
 > Reference: https://numpy.org/doc/stable/reference/random/generated/numpy.random.randint.html 
 >> * _rd.randint(A,B)_: Returns a random integer value between A and B.
+
 > #### Basemap
 > Reference : https://matplotlib.org/basemap/api/basemap_api.html 
 >> * _map = Basemap()_: Draw a map of the desired shape considering latitude and longitude.
@@ -322,13 +333,14 @@ def kmeans(dots, K, auto=False, centroids=None):
 >> * _map.drawmapboundary()_: Draw a line around map projection region.
 >> * _map.plot()_: Plotting on the map.
 
-> #### sklearn.cluster
-> Reference: 
+> #### sklearn
+> Reference: https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html     
+> https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html        
 >> * _Kmeans(n_cluster, init, n_init, max_iter, random_state)_: number of cluster(_n_cluster_), initialization method (_init_), initial centroid points attempts (_n_init_), and maximum number of iterations (_param_max_iter_) are entered, and the model is returned.
->> * _model.fit(data)_: The inertial value for the data(_candidate_) is Returned via inertia_.
+>> * _model.fit(data)_: The inertia value for the data(_candidate_) is returned via inertia_.
+>> * _model.fit_predict(data)_: Show which cluster each data belongs to.
+>> * _silhouette_score(data, cluster_labels)_: Calculate the silhouette score of _data_.   
 
-from sklearn.cluster import KMeans
-	km.fit(data) : Compute the k-means clustering by give data
-	km.inertia_float : Sum of squared distances of samples to their closest cluster center, weighted by the sample weights if provided.
-![image](https://user-images.githubusercontent.com/70621926/202629982-2fd225fe-251f-4dc6-adea-5668f84f8487.png)
-
+> #### seaborn
+> Reference : https://seaborn.pydata.org/generated/seaborn.heatmap.html       
+>> * _sns.heatmap(data, annot, fmt, cmap)_: data(_candidate_) is a function of visualizing data as a heat map. _annot_ is an option to write the data value in each cell, _fmt_ is an option to represent decimal places, and _cmap_ is a color option.
